@@ -1,0 +1,1 @@
+mongdo --dbpath=data/db
