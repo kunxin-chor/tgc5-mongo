@@ -159,3 +159,25 @@ Similiar to `SELECT * FROM studetns WHERE score >= 50 AND score <=30`
         }
     }, {name:1, 'host.host_total_listings_count':1}).limit(10).pretty()
 
+### Find by an item in an array
+
+
+    db.listingsAndReviews.find({
+        amenities:'Hot tub' 
+    }, {name:1, amenities:1}).limit(5).pretty()
+
+
+    Find listings that have wifi and laptop friendly workspace
+
+    db.listingsAndReviews.find({
+        amenities: {
+            $all: ['Wifi', 'Laptop friendly workspace']
+        }
+    }, {name:1, amenities:1}).limit(5).pretty()
+
+    Find listings that have a doorman OR that the host greets you
+    db.listingsAndReviews.find({
+        amenities:{
+            $in:['Doorman', 'Host greets you']
+        }
+    }, {name:1, amenities:1}).limit(5).pretty()
