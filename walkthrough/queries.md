@@ -181,3 +181,13 @@ Similiar to `SELECT * FROM studetns WHERE score >= 50 AND score <=30`
             $in:['Doorman', 'Host greets you']
         }
     }, {name:1, amenities:1}).limit(5).pretty()
+
+## GROUP by
+    db.listingsAndReviews.aggregate([
+        {$group:{
+            _id:'$property_type',
+            count:{
+                $sum:1
+            }
+        }}
+    ]);

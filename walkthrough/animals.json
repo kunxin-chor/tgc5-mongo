@@ -1,0 +1,13 @@
+[
+    {
+        "_id": 1,
+        "name":"Fexi",
+        "breed":"Cat",
+        "conditions":[
+                "1201"
+        ],
+        "checkups":[
+            "1406"
+        ]
+    }
+]

@@ -1,0 +1,13 @@
+[
+    {
+        "_id":1,
+        "name":"Dr. Chua",
+        "contact":"8881818",
+        "clinc":"Happy Woof Dog Clinic",
+        "license_number":"X123456"
+    },
+    {
+        "_id":2,
+        "name":"Dr. Lionel"
+    }
+]

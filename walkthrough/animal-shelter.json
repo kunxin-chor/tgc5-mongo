@@ -1,0 +1,53 @@
+[
+    {
+        "_id":1,
+        "name":"Biscuit",
+        "breed":"Golden Retriever",
+        "health_conditions":[
+            "Cancer", "Hip problem"
+        ],
+        "checkups":[
+            {
+                "_id":1,
+                "vet":{
+                    "name":"Dr. Chua",
+                    "contact":"81114545"  ,
+                    "clinc":"Happy Tails Animal Clinic"
+                },
+                "diagnosis":"Tumor has stablized",
+                "date":"29-06-2010"
+            },
+            {
+                "_id":"2",
+                "vet": {
+                    "name": "Dr. Chua",
+                    "contact": "99442123",
+                    "clinic": "Happy Tails Animal Clinic"
+                },
+                "diagnosis":"Hip joint problem is getting better",
+                "date":"30-07-2010"
+            },
+            {
+                 "_id":"2",
+                "vet": {
+                    "name": "Dr. Chua",
+                    "contact": "99442123",
+                    "clinic": "Happy Woof Dog Clinc"
+                },
+                "diagnosis":"Hip joint problem is getting better",
+                "date":"30-07-2010",
+                "comments": "Maybe more swimming will help"
+            }
+        ]
+
+    },
+    {
+        "_id":2,
+        "name":"Fluffy",
+        "breed":"Golden Retriever",
+        "health_conditions":[
+            "Cancer", "hip problems (lower joint)"
+        ],
+        "comments":"Like to chew shoes"
+    }
+]
