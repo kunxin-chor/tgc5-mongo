@@ -1,3 +1,4 @@
-data
+data/db
 pytest_cache
 __pycache__
+core.mongo.*

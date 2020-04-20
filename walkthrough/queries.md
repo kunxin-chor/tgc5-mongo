@@ -128,3 +128,34 @@ Similiar to `SELECT * FROM studetns WHERE score >= 50 AND score <=30`
             $lte:3
         }
     }, {name:1, bedrooms:1}).limit(10).pretty()
+
+# Find all listings that have 2 or 3 bedrooms and have 2 or more bathrooms
+
+    db.listingsAndReviews.find({
+        bedrooms: {
+            $gte:2,
+            $lte:3
+        },
+        bathrooms:{
+            $gte:2
+        }
+    }, {name:1, bedrooms:1, bathrooms:1}).limit(10).pretty()
+
+### Find all listings that are in Canada
+
+    db.listingsAndReviews.find({
+        'address.country': 'Canada'
+    }, {name:1, 'address.country':1).limit(10).pretty()
+
+### Find all listings that are in Canada, and display their lat lng
+    db.listingsAndReviews.find({
+        'address.country': 'Canada'
+    }, {name:1, 'address.country':1, 'address.location.coordinates':1}).limit(10).pretty()
+
+### Find all listings that have the host's total listing count greater than 2, and display the name and the total listing counted
+    db.listingsAndReviews.find({
+        'host.host_total_listings_count':{
+            $gt:2
+        }
+    }, {name:1, 'host.host_total_listings_count':1}).limit(10).pretty()
+
