@@ -191,3 +191,56 @@ Similiar to `SELECT * FROM studetns WHERE score >= 50 AND score <=30`
             }
         }}
     ]);
+
+# HOW TO CREATE/UPDATE AND DELECT documents
+
+* Document exists in collections
+* Collections exist in database
+
+1. Use the database (even if we haven't created it yet)
+2. Insert a document into a collection
+3. Done
+
+## Create the animal-shelter database
+
+Use the new database even though it doesn't exists
+    use animal_shelter
+
+Inserting an animal (this will also create the collection if the collection is empty or doesn't exist)
+    db.animals.insert({
+         "_id":ObjectId("5e9e5cc77fb3bf5da545666a"), // optional
+        "name":"Biscuit",
+        "breed":"Golden Retriever"
+    })
+
+Update an animal by replacing it with a new object (will replace the entire document)
+    db.animals.update({
+        // the matching critera
+        _id:ObjectId("5e9e5cc77fb3bf5da545666a")
+    }, {
+        "breed":"German Shepherd",
+        "checkups":[
+            {
+                "_id":ObjectId(),
+                "vet":"Dr. Chua",
+                "diagnosis":"Need to rest the hip more",
+                "date":new Date("2020-04-21")
+            }
+        ]
+    })
+
+Update an animal piecemeal (only replacing what is specified). Example: to change breed to German 
+    db.animals.update({
+        // the matching critera
+        _id:ObjectId("5e9e5cc77fb3bf5da545666a")
+    }, {
+        $set: {
+            "breed":"German Shepherd"
+        }
+    })
+
+
+Delete
+    db.animals.remove({
+        _id:ObjectId("5e9e5cc77fb3bf5da545666a")
+    })
