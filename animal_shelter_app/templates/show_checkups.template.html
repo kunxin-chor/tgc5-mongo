@@ -18,5 +18,23 @@
     {%else%}
         No checkups have been made
     {%endfor%}
+
+    <form method="POST">
+        <label>Vet</label>
+        <select name="vet">
+            {% for v in vets %}
+            <option value="{{v._id}}">
+                {{v.name}} from {{v.clinic}}
+            </option>
+            {%endfor%}
+        </select>
+        <br/>
+        <label>Diagnosis</label>
+        <input type="text" name="diagnosis"/>
+        <br/>
+        <label>Date:</label>
+        <input type="date" name="date"/>
+        <input type="submit"/>
+    </form> 
 </body>
 </html>

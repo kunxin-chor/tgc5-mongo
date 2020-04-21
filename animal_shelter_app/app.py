@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import os
+import datetime
 import pymongo
 from bson.objectid import ObjectId
 from dotenv import load_dotenv
@@ -67,13 +68,59 @@ def process_edit_animal(animal_id):
 
 @app.route('/checkups/<animal_id>')
 def show_checkups_for_animal(animal_id):
+
+    vets = client[DB_NAME].vets.find()
+
     animal = client[DB_NAME].animals.find_one({
         "_id": ObjectId(animal_id),
     }, {
         'name': 1, 'checkups': 1
     })
 
-    return render_template('show_checkups.template.html', animal=animal)
+    return render_template('show_checkups.template.html',
+                           animal=animal,
+                           vets=vets)
+
+
+@app.route('/checkups/<animal_id>', methods=["POST"])
+def add_checkups(animal_id):
+
+    vet = client[DB_NAME].vets.find_one({
+        "_id": ObjectId(request.form.get('vet'))
+    })
+    print(vet)
+    animal = client[DB_NAME].animals.update({
+        "_id": ObjectId(animal_id)
+    }, {
+        "$push": {
+            'checkups': {
+                "vet_id": vet['_id'],
+                "vet": vet['name'],
+                "diagnosis": request.form.get("diagnosis"),
+                "date": datetime.datetime.strptime(request.form.get('date'), "%Y-%m-%d")
+            }
+        }
+    })
+    return redirect(url_for('show_checkups_for_animal', animal_id=animal_id))
+
+@app.route("/delete_checkups/<animal_id>/<date>")
+def delete_checkup(animal_id, checkup_id):
+    client[DB_NAME].animals.update({
+        "_id":ObjectId(animal_id)
+    }, {
+        '$pull':{
+            'checkups': {
+
+            }
+        }
+    })
+
+@app.route("/delete_animal/<animal_id>")
+def delete_animal(animal_id):
+    client[DB_NAME].animals.remove({
+        "_id":ObjectId(animal_id)
+    })
+    return redirect(url_for('show_animals'))
 
 
 # "magic code" -- boilerplate
