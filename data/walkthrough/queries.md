@@ -244,3 +244,17 @@ Delete
     db.animals.remove({
         _id:ObjectId("5e9e5cc77fb3bf5da545666a")
     })
+
+## Create vets
+    db.vets.insertMany([
+        {
+            "name":"Dr Chua",
+            "license":"X123456",
+            "clinic":"Sunshine Way Pet Clinic"
+        },
+        {
+            "name":"Dr. Leon",
+            "license":"ABC12345",
+            "clinic":"Animal Hospital"
+        }
+    ])

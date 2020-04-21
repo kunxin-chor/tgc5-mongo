@@ -14,6 +14,8 @@
         <li>{{ c.date}}</li>
         <li>{{ c.vet}}</li>
         <li>{{ c.diagnosis}}</li>
+        <li><a href="{{ url_for('edit_checkup', checkup_id = c.checkup_id) }}">Edit</a>
+        <li><a href="{{ url_for('delete_checkup', animal_id=animal._id, checkup_id=c.checkup_id) }}">Delete</a>
     </ul>
     {%else%}
         No checkups have been made
